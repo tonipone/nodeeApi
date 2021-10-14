@@ -5,8 +5,23 @@ const contactRoutes = require('./api/routes/contacts');
 const todoRoutes = require('./api/routes/todos');
 const userRoutes = require('./api/routes/users');
 const morgan = require('morgan');
+const bodyPa = require('body-parser');
 
 app.use(morgan('dev'));
+
+app.use(bodyPa.urlencoded({extended: false}));
+app.use(bodyPa.json());
+
+// CORS error handling
+app.use((req,res,next)=>{
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if(req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, GET, DELETE');
+        return res.status(200).json();
+    }
+    next();
+})
 
 //Routes
 app.use('/contacts',contactRoutes);
