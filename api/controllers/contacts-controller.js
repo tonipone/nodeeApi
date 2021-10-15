@@ -1,4 +1,5 @@
 //const {builtinModules} = require('module');
+const Contact = require('../models/contact-model');
 
 class ContactsController {
      getAll () {
