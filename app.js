@@ -7,6 +7,7 @@ const userRoutes = require('./api/routes/users');
 const morgan = require('morgan');
 const bodyPa = require('body-parser');
 
+
 app.use(morgan('dev'));
 
 app.use(bodyPa.urlencoded({extended: false}));
